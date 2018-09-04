@@ -1,0 +1,130 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN";
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ===== ここからメイン部分 ===== */
+.container {
+  max-width: 1170px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.reservation-wrapper {
+  width: 500px;
+  margin: 50px auto;
+}
+
+.form-title {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.form-title h2 {
+  font-weight: normal;
+}
+
+.must {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 3px 6px;
+  background-color: #ffb9b5;
+  font-size: 10px;
+  color: red;
+  border-radius: 4px;
+}
+
+.form-item {
+  margin: 20px 0 10px 0;
+}
+
+.firstName, .LastName {
+  display: inline-block;
+  width: 48%;
+  margin-right: 5px;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1.2rem;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+
+.checkbox {
+  font-size: small;
+  /* display: inline-block; */
+}
+
+.staying {
+  color: #495057;
+}
+
+.caredit {
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  margin-bottom: 20px;
+}
+
+.card-date {
+  width: 30%;
+  display: inline-block;
+}
+
+.card-security {
+  width: 30%;
+}
+
+.submit {
+  display: block;
+  width: 70%;
+  line-height: 1.5;
+  margin: 50px auto;
+  background-color: rgba(7,191,163,0.5);
+  color :#fff;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: rgba(7,191,163,1);
+}

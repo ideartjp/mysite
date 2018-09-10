@@ -6,7 +6,7 @@
 
 body {
   margin: 0;
-  font-family: "Hiragino Kaku Gothic ProN";
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
 }
 
 li {
@@ -26,8 +26,14 @@ a {
 }
 
 .reservation-wrapper {
-  width: 500px;
+  width: 100%;
   margin: 50px auto;
+}
+
+/* ===== フォーム共通 ===== */
+.reservation-form {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .form-title {
@@ -39,28 +45,51 @@ a {
   font-weight: normal;
 }
 
-.must {
-  display: inline-block;
-  margin-left: 10px;
-  padding: 3px 6px;
-  background-color: #ffb9b5;
-  font-size: 10px;
-  color: red;
-  border-radius: 4px;
+table {
+  border-collapse: collapse;
+  margin: 30px 0;
 }
 
-.form-item {
-  margin: 20px 0 10px 0;
+th {
+  padding: 5px;
+  font-weight: normal;
+  text-align: right;
 }
 
-.firstName, .LastName {
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+th p,
+th span {
   display: inline-block;
-  width: 48%;
   margin-right: 5px;
 }
 
-input, select {
-  display: block;
+th p {
+  font-size: 18px;
+}
+
+th span {
+  padding: 3px 6px;
+  background-color: #ffb9b5;
+  font-size: 16px;
+  color: red;
+  opacity: 0.7;
+  border-radius: 4px;
+}
+
+.firstName,
+.LastName {
+  display: inline-block;
+  width: 45%;
+  margin-right: 5px;
+}
+
+input,
+select {
+  display: inline-block;
   width: 100%;
   height: calc(2.25rem + 2px);
   padding: .375rem .75rem;
@@ -72,8 +101,58 @@ input, select {
   border-radius: .25rem;
 }
 
-textarea {
+.men,
+.women {
+  width: 30%;
+  display: inline-block;
+  color: #495057;
+}
+
+.checkbox {
+  font-size: small;
+  /* display: inline-block; */
+}
+
+.who-stay {
+  color: #495057;
+}
+
+.credit {
   display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  margin-bottom: 10px;
+}
+
+.expiration-date {
+  display: inline-block;
+  width: 30%;
+}
+
+.card-security {
+  display: block;
+  width: 30%;
+}
+
+.any {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px 6px;
+  background-color: #87cefa;
+  font-size: 16px;
+  color: blue;
+  opacity: 0.7;
+  border-radius: 4px;
+}
+
+textarea {
   width: 100%;
   padding: .375rem .75rem;
   font-size: 1.2rem;
@@ -83,48 +162,19 @@ textarea {
   border-radius: .25rem;
 }
 
-.checkbox {
-  font-size: small;
-  /* display: inline-block; */
-}
-
-.staying {
-  color: #495057;
-}
-
-.caredit {
-  display: block;
-  width: 100%;
-  height: calc(2.25rem + 2px);
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  margin-bottom: 20px;
-}
-
-.card-date {
-  width: 30%;
-  display: inline-block;
-}
-
-.card-security {
-  width: 30%;
-}
-
 .submit {
   display: block;
-  width: 70%;
+  width: 50%;
   line-height: 1.5;
+  background-color: #fff;
+  color: rgba(7,191,163,1);
+  border: 2px solid rgba(7,191,163,1);
   margin: 50px auto;
-  background-color: rgba(7,191,163,0.5);
-  color :#fff;
   cursor: pointer;
 }
 
 .submit:hover {
   background-color: rgba(7,191,163,1);
+  color :#fff;
+  transition: all 0.5s;
 }

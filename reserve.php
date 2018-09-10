@@ -15,70 +15,160 @@
   </header>
   <div class="reservation-wrapper">
     <div class="container">
-      <div class="form-title">
-        <h2>予約内容入力</h2>
+      <div class="reservation-form">
+        <div class="form-title">
+          <h2>予約内容入力</h2>
+        </div>
+        <form action="confirm.php" method="post">
+          <table>
+            <tr class="form-item">
+              <th>
+                <p>氏名</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input class="LastName" type="text" name="lastName" placeholder="姓">
+                <input class="firstName" type="text" name="firstName" placeholder="名">
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>かな</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input class="LastName" type="text" name="lastNameKana" placeholder=せい>
+                <input class="firstName" type="text" name="firstNameKana" placeholder="めい">
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>メールアドレス</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input type="email" name="email" placeholder="半角英数字">
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>電話番号</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input type="text" name="phone" placeholder="半角英数字">
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>郵便番号</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input type="text" name="postalCode" placeholder="半角英数字（- ハイフンあり）">
+              <td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>住所</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input type="text" name="adress" placeholder="数字のみ半角英数字">
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>チェックイン時間</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <select name="checkIn">
+                  <option value="未選択">選択してください</option>
+                  <option value="15:00">15:00</option>
+                  <option value="15:30">15:30</option>
+                  <option value="16:00">16:00</option>
+                  <option value="16:30">16:30</option>
+                  <option value="17:00">17:00</option>
+                  <option value="17:30">17:30</option>
+                  <option value="18:00">18:00</option>
+                </select>
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>人数</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <select class="men" name="numOfMen">
+                  <option value="未選択">男性</option>
+                    <?php
+                      for ($i = 1; $i <= 7; $i++) {
+                        echo "<option value='{$i}'>{$i}名</option>";
+                      }
+                    ?>
+                </select>
+                <select class="women" name="numOfWomen">
+                  <option value="未選択">女性</option>
+                    <?php
+                      for ($i = 1; $i <= 7; $i++) {
+                        echo "<option value='{$i}'>{$i}名</option>";
+                      }
+                    ?>
+                </select>
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>宿泊代表者</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input class="who-stay" type="text" name="staying" value="上記と同じ">
+                <!-- <input class="checkbox" type="checkbox" name="representative" checked> -->
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th valign="top">
+                <p>お支払い情報</p>
+                <span>必須</span>
+              </th>
+              <td>
+                <input class="credit card-name" type="text" name="paymentName" placeholder="クレジットカード名義">
+                <input class="credit card-munber" type="text" name="paymentNum" placeholder="クレジットカード番号">
+                <select class="credit expiration-date" name="paymentMonth">
+                  <option value="未選択">月</option>
+                    <?php
+                      for ($i = 1; $i <= 12; $i++) {
+                        echo "<option value='{$i}'>{$i}月</option>";
+                      }
+                    ?>
+                </select>
+                <select class="credit expiration-date" name="paymentYear">
+                  <option value="未選択">年</option>
+                    <?php
+                      for ($i = 2018; $i <= 2038; $i++) {
+                        echo "<option value='{$i}'>{$i}</option>";
+                      }
+                    ?>
+                </select>
+                <input class="credit card-security" type="text" name="paymenSecur" placeholder="セキュリティコード">
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>
+                <p>ご要望など</p>
+                <span class="any">任意</span>
+              </th>
+              <td>
+                <textarea name="contact" rows="8" cols="80"></textarea>
+              </td>
+            </tr>
+          </table>
+          <input class="submit" type="submit" name="submit" value="予約内容を確認する">
+        </form>
       </div>
-      <form method="post" action="sent.php">
-        <div class="form-item">氏名<span class="must">必須</span></div>
-        <input class="LastName" type="text" name="name" placeholder="姓">
-        <input class="firstName" type="text" name="name" placeholder="名">
-        <div class="form-item">かな<span class="must">必須</span></div>
-        <input class="LastName" type="text" name="name" placeholder=せい>
-        <input class="firstName" type="text" name="name" placeholder="めい">
-        <div class="form-item">メールアドレス<span class="must">必須</span></div>
-        <input type="email" name="email" placeholder="半角英数字">
-        <div class="form-item">電話番号<span class="must">必須</span></div>
-        <input type="text" name="phone" placeholder="半角英数字">
-        <div class="form-item">郵便番号<span class="must">必須</span></div>
-        <input type="text" name="postalCode" placeholder="半角英数字（- ハイフンあり）">
-        <div class="form-item">住所<span class="must">必須</span></div>
-        <input type="text" name="adress" placeholder="数字のみ半角英数字">
-        <div class="form-item">チェックイン時間<span class="must">必須</span></div>
-        <select name="checkIn">
-          <option value="未選択">選択してください</option>
-          <option value="15:00">15:00</option>
-          <option value="15:30">15:30</option>
-          <option value="16:00">16:00</option>
-          <option value="16:30">16:30</option>
-          <option value="17:00">17:00</option>
-          <option value="17:30">17:30</option>
-          <option value="18:00">18:00</option>
-        </select>
-        <div class="form-item">人数<span class="must">必須</span></div>
-        <select name="people">
-          <option value="未選択">選択してください</option>
-          <option value="1名">1名</option>
-          <option value="2名">2名</option>
-          <option value="3名">3名</option>
-          <option value="4名">4名</option>
-        </select>
-        <div class="form-item">宿泊代表者<span class="must">必須</span></div>
-        <input class="staying" type="text" name="staying" value="上記と同じ">
-        <!-- <input class="checkbox" type="checkbox" name="representative" checked> -->
-        <div class="form-item">クレジットカード<span class="must">必須</span></div>
-        <input class="caredit card-name" type="text" name="payment" placeholder="名義">
-        <input class="caredit card-munber" type="text" name="payment" placeholder="クレジットカード番号">
-        <select class="caredit card-date" name="payment">
-          <option value="未選択">月</option>
-            <?php
-              for ($i = 1; $i <= 12; $i++) {
-                echo "<option value='{$i}'>{$i}月</option>";
-              }
-            ?>
-        </select>
-        <select class="caredit card-date" name="payment">
-          <option value="未選択">年</option>
-            <?php
-              for ($i = 2018; $i <= 2038; $i++) {
-                echo "<option value='{$i}'>{$i}</option>";
-              }
-            ?>
-        </select>
-        <input class="caredit card-security" type="text" name="payment" placeholder="セキュリティコード">
-        <div class="form-item">ご要望等</div>
-        <textarea name="name" rows="8" cols="80"></textarea>
-        <input class="submit" type="submit" name="submit" value="予約を確定する">
-      </form>
     </div>
   </div>
   <footer>

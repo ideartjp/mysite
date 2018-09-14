@@ -17,7 +17,6 @@ a {
   text-decoration: none;
 }
 
-/* ===== ここからメイン部分 ===== */
 .container {
   max-width: 1170px;
   width: 100%;
@@ -25,28 +24,27 @@ a {
   margin: 0 auto;
 }
 
-.reservation-wrapper {
+.confirm-wrapper {
   width: 100%;
   margin: 50px auto;
 }
 
-/* ===== フォーム共通 ===== */
-.reservation-form {
-  width: 60%;
-  margin: 0 auto;
+/* ===== タイトル部分（form-title） ===== */
+h1, h2, h3 {
+  font-weight: normal;
 }
 
 .form-title {
   text-align: center;
   padding: 20px 0;
+  margin-bottom: 50px;
+  border: 2px solid #eee;
 }
 
-.form-title h2 {
-  font-weight: normal;
-}
-
-table, th, td {
-  border-bottom: 1.5px solid rgba(7,191,163,1);
+/* ===== 内容確認フォーム（confirm-form） ===== */
+.confirm-form {
+  width: 60%;
+  margin: 0 auto;
 }
 
 table {
@@ -56,30 +54,35 @@ table {
   text-align: center;
 }
 
+th, td {
+  border-bottom: 1.5px solid rgba(7,191,163,1);
+}
+
 th {
   width: 30%;
   text-align: left;
   padding: 5px;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 1.1em;
 }
 
 td {
   width: 70%;
   padding: 5px 20px;
   text-align: left;
-  font-size: 18px;
+  font-size: 1.1em;
 }
 
 .submit {
-  font-size: 16px;
   display: block;
   width: 50%;
-  padding: 5px 0;
-  border-radius: 4px;
+  height: 60px;
+  line-height: 1.5;
+  font-size: 1.1em;
   background-color: #fff;
   color: rgba(7,191,163,1);
   border: 2px solid rgba(7,191,163,1);
+  border-radius: 5px;
   margin: 50px auto;
   cursor: pointer;
 }
@@ -87,5 +90,5 @@ td {
 .submit:hover {
   background-color: rgba(7,191,163,1);
   color :#fff;
-  transition: all 0.5s;
+  transition: all 0.4s;
 }

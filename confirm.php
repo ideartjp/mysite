@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ご予約内容の確認｜小口旅館</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset-context/cssreset-context-min.css">
   <link href="css/confirm.css" rel="stylesheet">
 </head>
 <body>
@@ -13,12 +14,12 @@
 
     </div>
   </header>
-  <div class="reservation-wrapper">
+  <div class="confirm-wrapper">
     <div class="container">
-      <div class="reservation-form">
-        <div class="form-title">
-          <h2>予約内容の最終確認</h2>
-        </div>
+      <div class="form-title">
+        <h2>ご予約内容の最終確認と確定をお願いいたします。</h2>
+      </div>
+      <div class="confirm-form">
         <form action="complete.php" method="post">
           <table>
             <tr class="form-item">
@@ -66,7 +67,7 @@
                   $postalCode = $_POST['postalCode'];
                   echo $postalCode;
                 ?>
-              <td>
+              </td>
             </tr>
             <tr class="form-item">
               <th>住所</th>

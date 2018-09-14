@@ -17,7 +17,12 @@ a {
   text-decoration: none;
 }
 
-/* ===== ここからメイン部分 ===== */
+/* ===== ページ共通 ===== */
+.reservation-wrapper {
+  width: 100%;
+  margin: 50px auto 100px;
+}
+
 .container {
   max-width: 1170px;
   width: 100%;
@@ -25,50 +30,57 @@ a {
   margin: 0 auto;
 }
 
-.reservation-wrapper {
-  width: 100%;
-  margin: 50px auto;
-}
-
-/* ===== フォーム共通 ===== */
-.reservation-form {
-  width: 80%;
-  margin: 0 auto;
+h1, h2, h3 {
+  font-weight: normal;
 }
 
 .form-title {
   text-align: center;
   padding: 20px 0;
+  margin-bottom: 50px;
+  border: 2px solid #eee;
 }
 
-.form-title h2 {
-  font-weight: normal;
+/* ===== 予約内容入力（reservation-form-wrapper） ===== */
+.reservation-form-wrapper {
+  float: left;
+  width: 80%;
 }
+
+.reservation-form {
+  width: 90%;
+}
+
+/* table, th, td {
+  border: 1.5px solid rgba(7,191,163,1);
+} */
 
 table {
+  width: 100%;
   border-collapse: collapse;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 th {
-  padding: 5px;
+  width: 30%;
+  padding: 10px 5px;
   font-weight: normal;
-  text-align: right;
-}
-
-td {
-  padding: 5px;
   text-align: left;
 }
 
-th p,
-th span {
+td {
+  width: 70%;
+  padding: 10px 5px;
+  text-align: left;
+}
+
+th p, th span {
   display: inline-block;
   margin-right: 5px;
 }
 
 th p {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 th span {
@@ -80,15 +92,7 @@ th span {
   border-radius: 4px;
 }
 
-.firstName,
-.LastName {
-  display: inline-block;
-  width: 45%;
-  margin-right: 5px;
-}
-
-input,
-select {
+input, select {
   display: inline-block;
   width: 100%;
   height: calc(2.25rem + 2px);
@@ -101,44 +105,57 @@ select {
   border-radius: .25rem;
 }
 
-.men,
-.women {
-  width: 30%;
+.reservation-info {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+
+/* ========== 基本情報 ========== */
+.basics-wrapper {
+  border-bottom: 1px solid rgba(7,191,163,0.3);
+}
+
+.firstName, .LastName {
+  display: inline-block;
+  width: 45%;
+  margin-right: 5px;
+}
+
+.checkIn-time {
+  width: 20%;
+}
+
+.count-person {
+
+}
+
+.count-person p {
+  display: inline-block;
+  font-size: 1.1em;
+}
+
+.form-men {
+  margin-right: 5px;
+}
+
+.form-men, .form-women {
+  width: 15%;
   display: inline-block;
   color: #495057;
 }
 
 .checkbox {
   font-size: small;
-  /* display: inline-block; */
 }
 
-.who-stay {
-  color: #495057;
+.check {
+  width: 1.1em;
+  height: 1.1em;
 }
 
-.credit {
-  display: block;
-  width: 100%;
-  height: calc(2.25rem + 2px);
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  margin-bottom: 10px;
-}
-
-.expiration-date {
-  display: inline-block;
-  width: 30%;
-}
-
-.card-security {
-  display: block;
-  width: 30%;
+lavel {
+  font-size: 1.1em;
 }
 
 .any {
@@ -162,10 +179,50 @@ textarea {
   border-radius: .25rem;
 }
 
+.count-text {
+  margin-bottom: 10px;
+}
+
+.count-text-color {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+
+/* ========== お支払い情報 ========== */
+.payment-wrapper {
+  border-bottom: 1px solid rgba(7,191,163,0.3);
+}
+
+.expiration-date {
+  display: inline-block;
+  width: 30%;
+}
+
+.security-code {
+  width: 30%;
+}
+
+.card-caution {
+  margin-bottom: 30px;
+}
+
+/* ========== キャンセルポリシーのCSS ========== */
+.cancel-policy-wrapper {
+}
+
+.cansel-message {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+
+/* ========== 送信ボタン ========== */
 .submit {
   display: block;
   width: 50%;
+  height: 60px;
   line-height: 1.5;
+  font-size: 1.1em;
   background-color: #fff;
   color: rgba(7,191,163,1);
   border: 2px solid rgba(7,191,163,1);
@@ -176,5 +233,58 @@ textarea {
 .submit:hover {
   background-color: rgba(7,191,163,1);
   color :#fff;
-  transition: all 0.5s;
+  transition: all 0.4s;
+}
+
+.messagebox-left  {
+  float: left;
+  width: 30%;
+  margin-bottom: 50px;
+}
+
+.messagebox-left li {
+  padding: 5px 0;
+}
+
+.messagebox-right {
+  float: left;
+  width: 70%;
+  margin-bottom: 50px;
+}
+
+.messagebox-right li {
+  padding: 5px 0;
+}
+
+/* ===== 選択プランの確認（plan-confirm-wrapper） ===== */
+.plan-confirm-wrapper {
+  float: right;
+  width: 20%;
+  /* background-color: green; */
+}
+
+.plan-confirm-wrapper h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.plan-confirm, .total-price {
+  border-bottom: 1px solid rgba(7,191,163,0.3);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.plan-confirm p {
+  margin-top: -2px;
+  margin-bottom: 4px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.total-price h3 {
+  font-size: 1.8em;
+}
+
+.total-price span {
+  font-size: 0.5em;
+  color: rgba(0, 0, 0, 0.8);
 }

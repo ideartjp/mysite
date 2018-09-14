@@ -90,12 +90,15 @@
                   <td>
                     <select class="checkIn-time" name="checkIn">
                       <option value="15:00">15:00</option>
-                      <option value="15:30">15:30</option>
-                      <option value="16:00">16:00</option>
-                      <option value="16:30">16:30</option>
-                      <option value="17:00">17:00</option>
-                      <option value="17:30">17:30</option>
-                      <option value="18:00">18:00</option>
+                        <?php
+                          $checkInTime = array('15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00');
+                          $i = 0;
+
+                          foreach ($checkInTime as $time) {
+                            echo "<option value='{$time}'>{$time}</option>";
+                            $i++;
+                          }
+                        ?>
                     </select>
                   </td>
                 </tr>
@@ -107,18 +110,18 @@
                   <td class="count-person">
                     <p>男性</p>
                     <select class="form-men" name="numOfMen">
-                      <option value="--">--</option>
+                      <option value="1">1名</option>
                         <?php
-                          for ($i = 1; $i <= 10; $i++) {
+                          for ($i = 2; $i <= 10; $i++) {
                             echo "<option value='{$i}'>{$i}名</option>";
                           }
                         ?>
                     </select>
                     <p>女性</p>
                     <select class="form-women" name="numOfWomen">
-                    <option value="--">--</option>
+                    <option value="1">1名</option>
                         <?php
-                          for ($i = 1; $i <= 10; $i++) {
+                          for ($i = 2; $i <= 10; $i++) {
                             echo "<option value='{$i}'>{$i}名</option>";
                           }
                         ?>
@@ -131,7 +134,7 @@
                     <p>宿泊代表者</p>
                   </th>
                   <td>
-                    <input class="check" type="checkbox" name="staying" value="1" id="check-box" checked="checked">
+                    <input class="check" type="checkbox" name="staying" value="" id="check-box" checked="checked">
                     <lavel for="check-box">上記の予約者と同じ</lavel>
                     <p>（代表者が異なる場合はチェックを外し、情報を入力してください。）</p>
                   </td>

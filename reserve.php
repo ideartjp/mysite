@@ -110,18 +110,18 @@
                   <td class="count-person">
                     <p>男性</p>
                     <select class="form-men" name="numOfMen">
-                      <option value="1">1名</option>
+                      <option value="0">0名</option>
                         <?php
-                          for ($i = 2; $i <= 10; $i++) {
+                          for ($i = 1; $i <= 10; $i++) {
                             echo "<option value='{$i}'>{$i}名</option>";
                           }
                         ?>
                     </select>
                     <p>女性</p>
                     <select class="form-women" name="numOfWomen">
-                    <option value="1">1名</option>
+                    <option value="0">0名</option>
                         <?php
-                          for ($i = 2; $i <= 10; $i++) {
+                          for ($i = 1; $i <= 10; $i++) {
                             echo "<option value='{$i}'>{$i}名</option>";
                           }
                         ?>

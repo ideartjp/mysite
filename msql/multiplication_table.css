@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 14px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.multiplication_table_wrapper {
+
+}
+
+.container {
+  max-width: 1170px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.multiplication_table {
+  width: 100%;
+  margin-top: 50px;
+}
+
+table, td {
+  border: 1.5px solid rgba(0,0,0,.5);
+}
+
+table {
+  font-size: 1.1rem;
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+
+/*
+th {
+  width: 11%;
+  padding: 10px 5px;
+  font-weight: normal;
+  text-align: center;
+}
+*/
+
+td {
+  width: 11%;
+  padding: 10px 5px;
+  text-align: center;
+}

@@ -40,9 +40,18 @@ table, td {
 
 table {
   font-size: 1.1rem;
-  width: 80%;
   border-collapse: collapse;
   margin: 20px auto;
+
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+
+  width: 60%;
+  height: 500px;
 }
 
 /*

@@ -9,30 +9,41 @@
   <div class="multiplication_table_wrapper">
     <div class="container">
       <div class="multiplication_table">
-        <?php
+        <table>
+        <?php // 1両目・11列目に色をつける、2列目・2行目以降は奇数行・列に色をつける
 
-        $values = array(
-            array('1','2','3','4','5','6','7','8','9'),
-            array('2','4','6','8','10','12','14','16','18'),
-            array('3','6','9','12','15','18','21','24','27'),
-            array('4','8','12','16','20','24','28','32','36'),
-            array('5','10','15','20','25','30','35','40','45'),
-            array('6','12','18','24','30','36','42','48','54'),
-            array('7','14','21','28','35','42','49','56','63'),
-            array('8','16','24','32','40','48','56','64','72'),
-            array('9','18','27','36','45','54','63','72','81'));
-
-          echo "<table>";
-            foreach ($values as $value) {
-              echo "<tr>";
-              foreach ($value as $num) {
-                echo "<td>$num</td>";
-              }
-              echo "</tr>";
+        for($i = 1; $i < 10; $i++){
+          echo '<tr>';
+            for($j = 1; $j < 10; $j++){
+                $x = $i * $j;
+                if ($i == 1 || $j == 1) {
+                  echo '<td style="background-color:rgba(7,191,163,0.3);">' . $x . '</td>';
+                } elseif ($i % 2 != 0 || $j % 2 != 0) {
+                  echo '<td style="background-color:rgba(7,191,163,0.3);">' . $x . '</td>';
+                } else {
+                  echo "<td>$x</td>";
+                }
             }
-          echo "</table>";
+          echo '</tr>';
+        }
 
-          ?>
+        ?>
+        </table>
+
+        <!-- <table>
+        <?php // 配列は使ってないけど、foreachも使わないバージョンができた(笑)
+
+        // for($i = 1; $i < 10; $i++){
+        //     echo '<tr>';
+        //     for($j = 1; $j < 10; $j++){
+        //         $x = $i * $j;
+        //         echo "<td>$x</td>";
+        //     }
+        //     echo '</tr>';
+        // }
+        //
+        // ?>
+        </table> -->
       </div>
     </div>
   </div>

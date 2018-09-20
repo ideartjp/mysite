@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <title>九九テーブルを作ろう</title>
+  <title>九九テーブルを作ってみた</title>
   <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset-context/cssreset-context-min.css">
   <link rel="stylesheet" href="multiplication_table.css">
 </head>

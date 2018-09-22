@@ -11,6 +11,7 @@ html {
 body {
   margin: 0;
   font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  color: #333333;
 }
 
 li {
@@ -41,7 +42,6 @@ a {
 }
 
 .message-wrapper p {
-  color: rgba(7,191,163,1);
   margin-top: 15px;
   font-size: 1.4rem;
 }

@@ -43,29 +43,11 @@
               </td>
             </tr>
             <tr class="form-item">
-              <th>メールアドレス</th>
-              <td>
-                <?php
-                  $email = $_POST['email'];
-                  echo $email;
-                ?>
-              </td>
-            </tr>
-            <tr class="form-item">
-              <th>電話番号</th>
-              <td>
-                <?php
-                  $phone = $_POST['phone'];
-                  echo $phone;
-                ?>
-              </td>
-            </tr>
-            <tr class="form-item">
               <th>郵便番号</th>
               <td>
                 <?php
-                  $postalCode = $_POST['postalCode'];
-                  echo $postalCode;
+                  $zipcode = $_POST['zipcode'];
+                  echo $zipcode;
                 ?>
               </td>
             </tr>
@@ -79,7 +61,82 @@
               </td>
             </tr>
             <tr class="form-item">
-              <th>チェックイン時間</th>
+              <th>電話番号</th>
+              <td>
+                <?php
+                  $phone = $_POST['phone'];
+                  echo $phone;
+                ?>
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>メールアドレス</th>
+              <td>
+                <?php
+                  $email = $_POST['email'];
+                  echo $email;
+                ?>
+              </td>
+            </tr>
+            <!-- representative -->
+            <tr class="form-item">
+              <th>宿泊代表者</th>
+              <td>
+                <?php
+
+                  $representativeStay = '上記の予約者と同じ';
+                  $representativeLastName = $_POST['representativeLastName'];
+                  $representativeFirstName = $_POST['representativeFirstName'];
+
+                  if ($representativeLastName != NULL && $representativeFirstName != NULL) {
+                    echo $representativeLastName . " " . $representativeFirstName;
+                  } else {
+                    echo $representativeStay;
+                  }
+
+                ?>
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>かな</th>
+              <td>
+                <?php
+                  $representativeLastNameKana = $_POST['representativeLastNameKana'];
+                  $representativeFirstNameKana = $_POST['representativeFirstNameKana'];
+                  echo $representativeLastNameKana . " " . $representativeFirstNameKana;
+                ?>
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>郵便番号</th>
+              <td>
+                <?php
+                  $representativeZipcode = $_POST['representativeZipcode'];
+                  echo $representativeZipcode;
+                ?>
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>住所</th>
+              <td>
+                <?php
+                  $representativeAdress = $_POST['representativeAdress'];
+                  echo $representativeAdress;
+                ?>
+              </td>
+            </tr>
+            <tr class="form-item">
+              <th>電話番号</th>
+              <td>
+                <?php
+                  $representativePhone = $_POST['representativePhone'];
+                  echo $representativePhone;
+                ?>
+              </td>
+            </tr>
+            <!-- $representative -->
+            <tr class="form-item">
+              <th>チェックイン予定時刻</th>
               <td>
                 <?php
                   $checkIn = $_POST['checkIn'];
@@ -88,21 +145,21 @@
               </td>
             </tr>
             <tr class="form-item">
-              <th>人数</th>
+              <th>交通手段</th>
               <td>
                 <?php
-                  $numOfMen = $_POST['numOfMen'];
-                  $numOfWomen = $_POST['numOfWomen'];
-                  echo "男性" . $numOfMen . "名 / " . "女性" . $numOfWomen . "名";
+                  $transportation = $_POST['transportation'];
+                  echo $transportation;
                 ?>
               </td>
             </tr>
             <tr class="form-item">
-              <th>宿泊代表者</th>
+              <th>人数内訳（大人）</th>
               <td>
                 <?php
-                  $staying = $_POST['staying'];
-                  echo $staying;
+                  $guestNumMr = $_POST['guestNumMr'];
+                  $guestNumMrs = $_POST['guestNumMrs'];
+                  echo "男性" . $guestNumMr . "名 / " . "女性" . $guestNumMrs . "名";
                 ?>
               </td>
             </tr>
@@ -110,16 +167,21 @@
               <th valign="top">お支払い情報</th>
               <td>
                 <?php
+                  $payment = $_POST['payment'];
                   $paymentName = $_POST['paymentName'];
                   $paymentNum = $_POST['paymentNum'];
                   $paymentMonth = $_POST['paymentMonth'];
                   $paymentYear = $_POST['paymentYear'];
-                  $paymenSecur = $_POST['paymenSecur'];
+                  $paymenSecur = $_POST['paymentSecur'];
 
-                  echo $paymentName . "<br />";
-                  echo $paymentNum . "<br />";
-                  echo $paymentMonth . " / " . $paymentYear . "<br />";
-                  echo $paymenSecur;
+                  if ($payment == '現地決済') {
+                    echo $payment;
+                  } else {
+                    echo $paymentNum . "<br />";
+                    echo $paymenSecur . "<br />";
+                    echo $paymentMonth . " / " . $paymentYear . "<br />";
+                    echo $paymentName;
+                  }
                 ?>
               </td>
             </tr>

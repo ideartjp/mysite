@@ -7,6 +7,7 @@
 body {
   margin: 0;
   font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  color: #333333;
 }
 
 li {
@@ -59,7 +60,7 @@ th, td {
 }
 
 th {
-  width: 30%;
+  width: 35%;
   text-align: left;
   padding: 5px;
   font-weight: normal;
@@ -67,8 +68,8 @@ th {
 }
 
 td {
-  width: 70%;
-  padding: 5px 20px;
+  width: 65%;
+  padding: 5px 5px;
   text-align: left;
   font-size: 1.1em;
 }

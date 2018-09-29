@@ -1,3 +1,18 @@
+<?php
+
+$checkInTime = array('15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00');
+
+const MIN = 0;
+const MAX = 10;
+
+const START_MONTH = 1;
+const END_MONTH = 12;
+
+$start_year = date('Y');
+$end_year  = $start_year + 20;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +23,7 @@
   <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset-context/cssreset-context-min.css">
   <link href="css/reserve.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 </head>
 <body>
   <header>
@@ -33,8 +49,8 @@
                 </div>
                 <div class="input-right">
                   <ul>
-                    <li><input class="lastName" type="text" name="lastName" placeholder="(例) 山田"></li>
-                    <li><input class="firstName" type="text" name="firstName" placeholder="太郎"></li>
+                    <li><input class="family-name" type="text" name="familyName" placeholder="(例) 山田"></li>
+                    <li><input class="given-name" type="text" name="givenName" placeholder="太郎"></li>
                   </ul>
                 </div>
                 <div class="clear"></div>
@@ -46,8 +62,8 @@
                 </div>
                 <div class="input-right">
                   <ul>
-                    <li><input class="lastName" type="text" name="lastNameKana" placeholder="(例) やまだ"></li>
-                    <li><input class="firstName" type="text" name="firstNameKana" placeholder="たろう"></li>
+                    <li><input class="family-name" type="text" name="familyNameKana" placeholder="(例) やまだ"></li>
+                    <li><input class="given-name" type="text" name="givenNameKana" placeholder="たろう"></li>
                   </ul>
                 </div>
                 <div class="clear"></div>
@@ -58,7 +74,7 @@
                   <p>郵便番号</p>
                 </div>
                 <div class="input-right">
-                  <input type="text" name="zipcode" placeholder="(例) 100-2000">
+                  <input type="text" name="zipcode" maxlength="8" placeholder="(例) 103-0027" onKeyUp="AjaxZip3.zip2addr(this,'','prefecture','address');">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -68,7 +84,8 @@
                   <p>住所</p>
                 </div>
                 <div class="input-right">
-                  <input type="text" name="adress" placeholder="(例) 東京都中央区日本橋1-1-1">
+                  <input type="text" name="prefecture" class="address" placeholder="※都道府県名は郵便番号を入力した後に自動入力されます。">
+                  <input type="text" name="address" class="address" placeholder="※市区町村名の後に続けて記載してください。">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -78,7 +95,7 @@
                   <p>電話番号</p>
                 </div>
                 <div class="input-right">
-                  <input type="text" name="phone" placeholder="(例) 090-1234-5678">
+                  <input type="tel" name="phone" maxlength="13" placeholder="(例) 090-1234-5678">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -113,8 +130,8 @@
                     </div>
                     <div class="input-right">
                       <ul>
-                        <li><input class="lastName" type="text" name="representativeLastName" placeholder="(例) 山田"></li>
-                        <li><input class="firstName" type="text" name="representativeFirstName" placeholder="太郎"></li>
+                        <li><input class="family-name" type="text" name="representativeFamilyName" placeholder="(例) 山田"></li>
+                        <li><input class="given-name" type="text" name="representativeGivenName" placeholder="太郎"></li>
                       </ul>
                     </div>
                     <div class="clear"></div>
@@ -126,8 +143,8 @@
                     </div>
                     <div class="input-right">
                       <ul>
-                        <li><input class="lastName" type="text" name="representativeLastNameKana" placeholder="(例) やまだ"></li>
-                        <li><input class="firstName" type="text" name="representativeFirstNameKana" placeholder="たろう"></li>
+                        <li><input class="family-name" type="text" name="representativeFamilyNameKana" placeholder="(例) やまだ"></li>
+                        <li><input class="given-name" type="text" name="representativeGivenNameKana" placeholder="たろう"></li>
                       </ul>
                     </div>
                     <div class="clear"></div>
@@ -138,7 +155,7 @@
                       <p>郵便番号</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="representativeZipcode" placeholder="(例) 100-2000">
+                      <input type="text" name="representativeZipcode" maxlength="8" placeholder="(例) 103-0027" onKeyUp="AjaxZip3.zip2addr(this,'','representativePrefecture','representativeAddress');">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -148,7 +165,8 @@
                       <p>住所</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="representativeAdress" placeholder="(例) 東京都中央区日本橋1-1-1">
+                      <input type="text" name="representativePrefecture" class="address" placeholder="※郵便番号の入力後、自動入力されます。">
+                      <input type="text" name="representativeAddress" class="address" placeholder="※市区町村名の後に続けて記載してください。">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -158,7 +176,7 @@
                       <p>電話番号</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="representativePhone" placeholder="(例) 090-1234-5678">
+                      <input type="tel" name="representativePhone" maxlength="13" placeholder="(例) 090-1234-5678">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -171,15 +189,9 @@
                 </div>
                 <div class="input-right">
                   <select class="checkin-time" name="checkIn">
-                    <?php
-                      $checkInTime = array('15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00');
-                      $i = 0;
-
-                      foreach ($checkInTime as $time) {
-                        echo "<option value='{$time}'>{$time}</option>";
-                        $i++;
-                      }
-                    ?>
+                    <?php foreach ($checkInTime as $time): ?>
+                      <option value='<?=$time?>'><?=$time?></option>
+                    <?php endforeach; ?>
                   </select>
                 </div>
                 <div class="clear"></div>
@@ -191,23 +203,23 @@
                 </div>
                 <div class="input-right">
                   <label>
-                    <input type="radio" name="transportation" value="車" id="car" class="transportation" checked>
+                    <input type="radio" name="transportation" value="1" class="transportation" checked>
                     <span class="transportation-message">車</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="オートバイ" id="motorcycle" class="transportation">
+                    <input type="radio" name="transportation" value="2" class="transportation">
                     <span class="transportation-message">オートバイ</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="電車" id="train" class="transportation">
+                    <input type="radio" name="transportation" value="3" class="transportation">
                     <span class="transportation-message">電車</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="バス" id="bus" class="transportation">
+                    <input type="radio" name="transportation" value="4" class="transportation">
                     <span class="transportation-message">バス</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="その他" id="other" class="transportation">
+                    <input type="radio" name="transportation" value="5" class="transportation">
                     <span class="transportation-message">その他</span>
                   </label>
                 </div>
@@ -221,20 +233,16 @@
                 <div class="input-right">
                   <div class="input-mr">
                     <p>男性：<select class="num-mr" name="guestNumMr">
-                      <?php
-                        for ($i = 0; $i <= 10; $i++) {
-                          echo "<option value='{$i}'>{$i}</option>";
-                        }
-                      ?>
+                      <?php for ($i = MIN; $i <= MAX; $i++): ?>
+                        <option value='<?=$i?>'><?=$i?></option>
+                      <?php endfor; ?>
                     </select> 名</p>
                   </div>
                   <div class="input-mrs">
                     <p>女性：<select class="num-mrs" name="guestNumMrs">
-                      <?php
-                        for ($i = 0; $i <= 10; $i++) {
-                          echo "<option value='{$i}'>{$i}</option>";
-                        }
-                      ?>
+                      <?php for ($i = MIN; $i <= MAX; $i++): ?>
+                        <option value='<?=$i?>'><?=$i?></option>
+                      <?php endfor; ?>
                     </select> 名</p>
                   </div>
                 </div>
@@ -246,10 +254,10 @@
                   <p>ご要望など</p>
                 </div>
                 <div class="input-right">
-                  <textarea name="contact" rows="6" cols="30" placeholder="※食材の苦手やアレルギーをお持ちの方、記念日・特別な予約の方、駅からの送迎希望、その他施設への質問がある方はこちらにご記入をお願いします。"></textarea>
+                  <textarea name="contact" rows="12" cols="30" placeholder="※食材の苦手やアレルギーをお持ちの方、記念日・特別な予約の方、駅からの送迎希望、その他施設への質問がある方はこちらにご記入をお願いします。"></textarea>
                   <div class="count-text">
                     <span class="count-text-color" id="countUp">0</span>
-                    <span class="count-text-color">/ 300文字</span>
+                    <span class="count-text-color">/ 200文字</span>
                   </div>
                   <p class="notice">※内容によっては、ご希望に添えない場合もございます。</p>
                 </div>
@@ -274,7 +282,7 @@
                       <p>カード番号</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="paymentNum">
+                      <input type="text" name="paymentNum" maxlength="16">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -284,7 +292,7 @@
                       <p>セキュリティーコード</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="paymentSecur" id="securityCode">
+                      <input type="text" name="paymentSecur" maxlength="4" id="securityCode">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -295,20 +303,14 @@
                     </div>
                     <div class="input-right">
                       <select class="expiration-date" name="paymentMonth">
-                        <option value="--">月</option>
-                          <?php
-                            for ($i = 1; $i <= 12; $i++) {
-                              echo "<option value='{$i}'>{$i}</option>";
-                            }
-                          ?>
+                        <?php for ($i = START_MONTH; $i <= END_MONTH; $i++): ?>
+                          <option value='<?=$i?>'><?=$i?></option>
+                        <?php endfor; ?>
                       </select>
                       <select class="expiration-date" name="paymentYear">
-                        <option value="--">年</option>
-                          <?php
-                            for ($i = 2018; $i <= 2038; $i++) {
-                              echo "<option value='{$i}'>{$i}</option>";
-                            }
-                          ?>
+                        <?php for ($i = $start_year; $i <= $end_year; $i++): ?>
+                          <option value='<?=$i?>'><?=$i?></option>
+                        <?php endfor; ?>
                       </select>
                     </div>
                     <div class="clear"></div>

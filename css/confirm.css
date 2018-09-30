@@ -1,30 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
-  color: #333333;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-.container {
-  max-width: 1170px;
-  width: 100%;
-  padding: 0 15px;
-  margin: 0 auto;
-}
-
 .confirm-wrapper {
   width: 100%;
   margin: 50px auto;
@@ -37,9 +10,14 @@ h1, h2, h3 {
 
 .form-title {
   text-align: center;
-  padding: 20px 0;
-  margin-bottom: 50px;
+  padding: 1.2rem 0;
+  margin-bottom: 3rem;
   border: 2px solid #eee;
+}
+
+.form-title h1 {
+  font-size: 1.5rem;
+  line-height: 2;
 }
 
 /* ===== 内容確認フォーム（confirm-form） ===== */
@@ -51,40 +29,38 @@ h1, h2, h3 {
 table {
   border-collapse: collapse;
   width: 100%;
-  margin: 30px 0;
+  margin: 2rem 0;
   text-align: center;
 }
 
 th, td {
   border-bottom: 1.5px solid rgba(7,191,163,1);
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 1.1rem;
 }
 
 th {
   width: 35%;
-  text-align: left;
-  padding: 5px;
   font-weight: normal;
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 
 td {
   width: 65%;
-  padding: 5px 5px;
-  text-align: left;
-  font-size: 1.1em;
 }
 
 .submit {
   display: block;
   width: 50%;
-  height: 60px;
+  height: 3.5rem;
   line-height: 1.5;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   background-color: #fff;
   color: rgba(7,191,163,1);
   border: 2px solid rgba(7,191,163,1);
-  border-radius: 5px;
-  margin: 50px auto;
+  border-radius: 0.25rem;
+  margin: 3rem auto;
   cursor: pointer;
 }
 

@@ -78,7 +78,7 @@ if ($validFlag == false) {
     exit();
 }
 
-// ===== $_POST =====
+// ===== $_SESSION =====
 // basic
 $familyName     = $_SESSION['familyName'];
 $givenName      = $_SESSION['givenName'];
@@ -118,15 +118,21 @@ $sql = 'INSERT INTO users (family_name, given_name, family_name_kana, given_name
 $sth = $dbh->prepare($sql);
 $sth->execute(array($familyName, $givenName, $familyNameKana, $givenNameKana, $zipcode, $prefecture, $address, $phone, $email));
 
-if ($representativeStay != '') {
+if ($representativeStay == '') {
   $sql = 'INSERT INTO users (family_name, given_name, family_name_kana, given_name_kana, zipcode, prefecture, address, phone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
   $sth = $dbh->prepare($sql);
   $sth->execute(array($representativeFamilyName, $representativeGivenName, $representativeFamilyNameKana, $representativeGivenNameKana, $representativeZipcode, $representativePrefecture, $representativeAddress, $representativePhone, $representativeEmail));
 }
 
-// $sql = 'INSERT INTO users (family_name, given_name, family_name_kana, given_name_kana, zipcode, prefecture, address, phone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-// $sth = $dbh->prepare($sql);
-// $sth->execute(array($familyName, $givenName, $familyNameKana, $givenNameKana, $zipcode, $prefecture, $address, $phone, $email));
+$sql = 'INSERT INTO reservations (hotels_id, users_id, check_in_time, transportation_id, num_mr, num_mrs, contact, payments_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+$sth = $dbh->prepare($sql);
+$sth->execute(array($@@@, $@@@, $checkInTime, $transportation, $guestNumMr, $guestNumMrs, $contact, $@@@));
+// 他のテーブルのid（hotels_id, users_id, payments_id）の参照方法？
+
+$sql = 'INSERT INTO reservations_users (reservations_id, users_id, flag) VALUES (?, ?, ?)';
+$sth = $dbh->prepare($sql);
+$sth->execute(array($@@@, $@@@, $@@@));
+// 他のテーブルのid（reservations_id, users_id）の参照方法？
 
 header("location: complete.html");
 exit();

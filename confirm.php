@@ -84,7 +84,8 @@ if ($validFlag == false) {
   $_SESSION['phone']          = $_POST['phone'];
   $_SESSION['email']          = $_POST['email'];
   // representative
-  $_SESSION['representativeStay']           = $representativeStay;
+  // $_SESSION['representativeStay']           = $representativeStay;
+  $_SESSION['representativeStay']           = $_POST['representativeStay'];
   $_SESSION['representativeFamilyName']     = $_POST['representativeFamilyName'];
   $_SESSION['representativeGivenName']      = $_POST['representativeGivenName'];
   $_SESSION['representativeFamilyNameKana'] = $_POST['representativeFamilyNameKana'];
@@ -116,7 +117,8 @@ $address        = $_POST['address'];
 $phone          = $_POST['phone'];
 $email          = $_POST['email'];
 // representative
-$representativeStay           = '上記の予約者と同じ';
+// $representativeStay           = '上記の予約者と同じ';
+$representativeStay           = $_POST['representativeStay'];
 $representativeFamilyName     = $_POST['representativeFamilyName'];
 $representativeGivenName      = $_POST['representativeGivenName'];
 $representativeFamilyNameKana = $_POST['representativeFamilyNameKana'];
@@ -152,7 +154,8 @@ $_SESSION['address']        = $_POST['address'];
 $_SESSION['phone']          = $_POST['phone'];
 $_SESSION['email']          = $_POST['email'];
 // representative
-$_SESSION['representativeStay']           = $representativeStay;
+// $_SESSION['representativeStay']           = $_representativeStay;
+$_SESSION['representativeStay']           = $_POST['representativeStay'];
 $_SESSION['representativeFamilyName']     = $_POST['representativeFamilyName'];
 $_SESSION['representativeGivenName']      = $_POST['representativeGivenName'];
 $_SESSION['representativeFamilyNameKana'] = $_POST['representativeFamilyNameKana'];
@@ -184,7 +187,7 @@ $_SESSION['contact']        = $_POST['contact'];
 <body>
   <header>
     <div class="container">
-
+      
     </div>
   </header>
   <div class="confirm-wrapper">
@@ -225,7 +228,7 @@ $_SESSION['contact']        = $_POST['contact'];
               <?php if ($representativeFamilyName != NULL && $representativeGivenName != NULL): ?>
                 <td><?= $representativeFamilyName . " " . $representativeGivenName; ?></td>
               <?php else: ?>
-                <td><?= $representativeStay; ?></td>
+                <td><?= "上記の予約者と同じ"; ?></td>
               <?php endif; ?>
             </tr>
             <tr class="form-item">

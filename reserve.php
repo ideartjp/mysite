@@ -513,6 +513,6 @@ $end_year  = $start_year + 20;
 
     </div>
   </footer>
-  <script type="text/javascript" src="js/reserve.js"></script>
+  <script src="js/reserve.js"></script>
 </body>
 </html>

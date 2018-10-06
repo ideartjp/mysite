@@ -1,117 +1,61 @@
 <?php
 session_start();
+var_dump($_SESSION);
 
-if (isset($_SESSION['familyName'])) {
- $familyName = $_SESSION['familyName'];
+if(isset($_POST['back'])){
+    $familyName     = $_SESSION['familyName'];
+    $givenName      = $_SESSION['givenName'];
+    $familyNameKana = $_SESSION['familyNameKana'];
+    $givenNameKana  = $_SESSION['givenNameKana'];
+    $zipcode        = $_SESSION['zipcode'];
+    $prefecture     = $_SESSION['prefecture'];
+    $address        = $_SESSION['address'];
+    $phone          = $_SESSION['phone'];
+    $email          = $_SESSION['email'];
+    $representativeFamilyName     = $_SESSION['representativeFamilyName'];
+    $representativeGivenName      = $_SESSION['representativeGivenName'];
+    $representativeFamilyNameKana = $_SESSION['representativeFamilyNameKana'];
+    $representativeGivenNameKana  = $_SESSION['representativeGivenNameKana'];
+    $representativeZipcode        = $_SESSION['representativeZipcode'];
+    $representativePrefecture     = $_SESSION['representativePrefecture'];
+    $representativeAddress        = $_SESSION['representativeAddress'];
+    $representativePhone          = $_SESSION['representativePhone'];
+    $checkInTime    = $_SESSION['checkInTime'];
+    $transportation = $_SESSION['transportation'];
+    $guestNumMr     = $_SESSION['guestNumMr'];
+    $guestNumMrs    = $_SESSION['guestNumMrs'];
+    $contact        = $_SESSION['contact'];
+
+    function getSession($name) {
+        if (isset($_SESSION[$name])) {
+            return $_SESSION[$name];
+        }
+        return '';
+    }
 } else {
- $familyName = '';
-}
-if (isset($_SESSION['givenName'])) {
- $givenName = $_SESSION['givenName'];
-} else {
- $givenName = '';
-}
-if (isset($_SESSION['familyNameKana'])) {
- $familyNameKana = $_SESSION['familyNameKana'];
-} else {
- $familyNameKana = '';
-}
-if (isset($_SESSION['givenNameKana'])) {
- $givenNameKana = $_SESSION['givenNameKana'];
-} else {
- $givenNameKana = '';
-}
-if (isset($_SESSION['zipcode'])) {
- $zipcode = $_SESSION['zipcode'];
-} else {
- $zipcode = '';
-}
-if (isset($_SESSION['prefecture'])) {
- $prefecture = $_SESSION['prefecture'];
-} else {
- $prefecture = '';
-}
-if (isset($_SESSION['address'])) {
- $address = $_SESSION['address'];
-} else {
- $address = '';
-}
-if (isset($_SESSION['phone'])) {
- $phone = $_SESSION['phone'];
-} else {
- $phone = '';
-}
-if (isset($_SESSION['email'])) {
- $email = $_SESSION['email'];
-} else {
- $email = '';
-}
-// representative
-if (isset($_SESSION['representativeFamilyName'])) {
- $representativeFamilyName = $_SESSION['representativeFamilyName'];
-} else {
- $representativeFamilyName = '';
-}
-if (isset($_SESSION['representativeGivenName'])) {
- $representativeGivenName = $_SESSION['representativeGivenName'];
-} else {
- $representativeGivenName = '';
-}
-if (isset($_SESSION['representativeFamilyNameKana'])) {
- $representativeFamilyNameKana = $_SESSION['representativeFamilyNameKana'];
-} else {
- $representativeFamilyNameKana = '';
-}
-if (isset($_SESSION['representativeGivenNameKana'])) {
- $representativeGivenNameKana = $_SESSION['representativeGivenNameKana'];
-} else {
- $representativeGivenNameKana = '';
-}
-if (isset($_SESSION['representativeZipcode'])) {
- $representativeZipcode = $_SESSION['representativeZipcode'];
-} else {
- $representativeZipcode = '';
-}
-if (isset($_SESSION['representativePrefecture'])) {
- $representativePrefecture = $_SESSION['representativePrefecture'];
-} else {
- $representativePrefecture = '';
-}
-if (isset($_SESSION['representativeAddress'])) {
- $representativeAddress = $_SESSION['representativeAddress'];
-} else {
- $representativeAddress = '';
-}
-if (isset($_SESSION['representativePhone'])) {
- $representativePhone = $_SESSION['representativePhone'];
-} else {
- $representativePhone = '';
-}
-// others
-if (isset($_SESSION['checkInTime'])) {
- $checkInTime = $_SESSION['checkInTime'];
-} else {
- $checkInTime = '';
-}
-if (isset($_SESSION['transportation'])) {
- $transportation = $_SESSION['transportation'];
-} else {
- $transportation = '';
-}
-if (isset($_SESSION['guestNumMr'])) {
- $guestNumMr = $_SESSION['guestNumMr'];
-} else {
- $guestNumMr = '';
-}
-if (isset($_SESSION['guestNumMrs'])) {
- $guestNumMrs = $_SESSION['guestNumMrs'];
-} else {
- $guestNumMrs = '';
-}
-if (isset($_SESSION['contact'])) {
- $contact = $_SESSION['contact'];
-} else {
- $contact = '';
+    $_SESSION = array();
+    $familyName     = '';
+    $givenName      = '';
+    $familyNameKana = '';
+    $givenNameKana  = '';
+    $zipcode        = '';
+    $prefecture     = '';
+    $address        = '';
+    $phone          = '';
+    $email          = '';
+    $representativeFamilyName     = '';
+    $representativeGivenName      = '';
+    $representativeFamilyNameKana = '';
+    $representativeGivenNameKana  = '';
+    $representativeZipcode        = '';
+    $representativePrefecture     = '';
+    $representativeAddress        = '';
+    $representativePhone          = '';
+    $checkInTime    = '';
+    $transportation = '';
+    $guestNumMr     = '';
+    $guestNumMrs    = '';
+    $contact        = '';
 }
 
 $checkInTimes = array('15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00');
@@ -155,7 +99,7 @@ $end_year  = $start_year + 20;
       <div class="reservation-form-wrapper">
         <div class="reservation-form">
           <form action="confirm.php" method="post">
-          <!-- <form action="session.test.php" method="post"> -->
+          <!-- <form action="test_confirm.php" method="post"> -->
             <div class="reservation-info basics-wrapper">
               <h2>基本情報の入力</h2>
               <div class="input-area clear">
@@ -179,7 +123,7 @@ $end_year  = $start_year + 20;
                 <div class="input-right">
                   <ul>
                     <li><input class="family-name" type="text" name="familyNameKana" placeholder="(例) やまだ" value="<?=$familyNameKana?>"></li>
-                    <li><input class="given-name" type="text" name="givenNameKana" placeholder="たろう" value="<?=$familyNameKana?>"></li>
+                    <li><input class="given-name" type="text" name="givenNameKana" placeholder="たろう" value="<?=$givenNameKana?>"></li>
                   </ul>
                 </div>
                 <div class="clear"></div>
@@ -221,7 +165,7 @@ $end_year  = $start_year + 20;
                   <p>メールアドレス</p>
                 </div>
                 <div class="input-right">
-                  <input type="email" name="email" placeholder="(例) yoyaku@gmail.com" value="<?=$email?>">
+                  <input type="email" name="email" placeholder="(例) yoyaku@example.com" value="<?=$email?>">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -349,14 +293,14 @@ $end_year  = $start_year + 20;
                 </div>
                 <div class="input-right">
                   <div class="input-mr">
-                    <p>男性：<select class="num-mr" name="guestNumMr">
+                    <p>男性：<select class="num-mr" name="guestNumMr" value="<?=$guestNumMr?>">
                       <?php for ($i = MIN; $i <= MAX; $i++): ?>
-                        <option value='<?=$i?>'><?=$i?></option>
+                        <option value='<?=$guestNumMr?>'><?=$i?></option>
                       <?php endfor; ?>
                     </select> 名</p>
                   </div>
                   <div class="input-mrs">
-                    <p>女性：<select class="num-mrs" name="guestNumMrs">
+                    <p>女性：<select class="num-mrs" name="guestNumMrs" value="<?=$guestNumMrs?>">
                       <?php for ($i = MIN; $i <= MAX; $i++): ?>
                         <option value='<?=$i?>'><?=$i?></option>
                       <?php endfor; ?>
@@ -371,8 +315,8 @@ $end_year  = $start_year + 20;
                   <p>ご要望など</p>
                 </div>
                 <div class="input-right">
-                  <textarea name="contact" rows="12" cols="30" placeholder="※食材の苦手やアレルギーをお持ちの方、記念日・特別な予約の方、駅からの送迎希望、その他施設への質問がある方はこちらにご記入をお願いします。"></textarea>
-                  <div class="count-text"value="<?=$contact?>">
+                  <textarea name="contact" rows="12" cols="30" placeholder="※食材の苦手やアレルギーをお持ちの方、記念日・特別な予約の方、駅からの送迎希望、その他施設への質問がある方はこちらにご記入をお願いします。" value="<?=$contact?>"></textarea>
+                  <div class="count-text">
                     <span class="count-text-color" id="countUp">0</span>
                     <span class="count-text-color">/ 200文字</span>
                   </div>
@@ -514,5 +458,6 @@ $end_year  = $start_year + 20;
     </div>
   </footer>
   <script src="js/reserve.js"></script>
+  <script src="js/validation.js"></script>
 </body>
 </html>

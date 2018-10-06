@@ -84,7 +84,7 @@ if ($validFlag == false) {
   $_SESSION['phone']          = $_POST['phone'];
   $_SESSION['email']          = $_POST['email'];
   // representative
-  // $_SESSION['representativeStay']           = $representativeStay;
+  $_SESSION['representativeStay']           = $_POST['$representativeStay'];
   $_SESSION['representativeStay']           = $_POST['representativeStay'];
   $_SESSION['representativeFamilyName']     = $_POST['representativeFamilyName'];
   $_SESSION['representativeGivenName']      = $_POST['representativeGivenName'];
@@ -100,7 +100,7 @@ if ($validFlag == false) {
   $_SESSION['transportation'] = $_POST['transportation'];
   $_SESSION['guestNumMr']     = $_POST['guestNumMr'];
   $_SESSION['guestNumMrs']    = $_POST['guestNumMrs'];
-  // $_SESSION['contact']        = $_POST['contact'];
+  $_SESSION['contact']        = $_POST['contact'];
   header("location: reserve.php");
   exit();
 }
@@ -187,7 +187,7 @@ $_SESSION['contact']        = $_POST['contact'];
 <body>
   <header>
     <div class="container">
-      
+
     </div>
   </header>
   <div class="confirm-wrapper">
@@ -290,6 +290,9 @@ $_SESSION['contact']        = $_POST['contact'];
             </tr>
           </table>
           <input class="submit" type="submit" name="submit" value="予約を確定する">
+        </form>
+        <form action="test_reserve.php" method="post">
+          <input class="back" type="submit" name="back" value="入力画面に戻る">
         </form>
       </div>
     </div>

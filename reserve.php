@@ -1,3 +1,76 @@
+<?php
+session_start();
+var_dump($_SESSION);
+
+if(isset($_POST['back'])){
+    $familyName     = $_SESSION['familyName'];
+    $givenName      = $_SESSION['givenName'];
+    $familyNameKana = $_SESSION['familyNameKana'];
+    $givenNameKana  = $_SESSION['givenNameKana'];
+    $zipcode        = $_SESSION['zipcode'];
+    $prefecture     = $_SESSION['prefecture'];
+    $address        = $_SESSION['address'];
+    $phone          = $_SESSION['phone'];
+    $email          = $_SESSION['email'];
+    $representativeFamilyName     = $_SESSION['representativeFamilyName'];
+    $representativeGivenName      = $_SESSION['representativeGivenName'];
+    $representativeFamilyNameKana = $_SESSION['representativeFamilyNameKana'];
+    $representativeGivenNameKana  = $_SESSION['representativeGivenNameKana'];
+    $representativeZipcode        = $_SESSION['representativeZipcode'];
+    $representativePrefecture     = $_SESSION['representativePrefecture'];
+    $representativeAddress        = $_SESSION['representativeAddress'];
+    $representativePhone          = $_SESSION['representativePhone'];
+    $checkInTime    = $_SESSION['checkInTime'];
+    $transportation = $_SESSION['transportation'];
+    $guestNumMr     = $_SESSION['guestNumMr'];
+    $guestNumMrs    = $_SESSION['guestNumMrs'];
+    $contact        = $_SESSION['contact'];
+
+    function getSession($name) {
+        if (isset($_SESSION[$name])) {
+            return $_SESSION[$name];
+        }
+        return '';
+    }
+} else {
+    $_SESSION = array();
+    $familyName     = '';
+    $givenName      = '';
+    $familyNameKana = '';
+    $givenNameKana  = '';
+    $zipcode        = '';
+    $prefecture     = '';
+    $address        = '';
+    $phone          = '';
+    $email          = '';
+    $representativeFamilyName     = '';
+    $representativeGivenName      = '';
+    $representativeFamilyNameKana = '';
+    $representativeGivenNameKana  = '';
+    $representativeZipcode        = '';
+    $representativePrefecture     = '';
+    $representativeAddress        = '';
+    $representativePhone          = '';
+    $checkInTime    = '';
+    $transportation = '';
+    $guestNumMr     = '';
+    $guestNumMrs    = '';
+    $contact        = '';
+}
+
+$checkInTimes = array('15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00');
+
+const MIN = 0;
+const MAX = 10;
+
+const START_MONTH = 1;
+const END_MONTH = 12;
+
+$start_year = date('Y');
+$end_year  = $start_year + 20;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +78,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ご予約内容入力画面｜小口旅館</title>
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset-context/cssreset-context-min.css">
+  <link href="css/reset.css" rel="stylesheet">
+  <link href="css/common.css" rel="stylesheet">
   <link href="css/reserve.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 </head>
 <body>
   <header>
@@ -24,6 +99,7 @@
       <div class="reservation-form-wrapper">
         <div class="reservation-form">
           <form action="confirm.php" method="post">
+          <!-- <form action="test_confirm.php" method="post"> -->
             <div class="reservation-info basics-wrapper">
               <h2>基本情報の入力</h2>
               <div class="input-area clear">
@@ -33,8 +109,8 @@
                 </div>
                 <div class="input-right">
                   <ul>
-                    <li><input class="lastName" type="text" name="lastName" placeholder="(例) 山田"></li>
-                    <li><input class="firstName" type="text" name="firstName" placeholder="太郎"></li>
+                    <li><input class="family-name" type="text" name="familyName" placeholder="(例) 山田" value="<?=$familyName?>"></li>
+                    <li><input class="given-name" type="text" name="givenName" placeholder="太郎" value="<?=$givenName?>"></li>
                   </ul>
                 </div>
                 <div class="clear"></div>
@@ -46,8 +122,8 @@
                 </div>
                 <div class="input-right">
                   <ul>
-                    <li><input class="lastName" type="text" name="lastNameKana" placeholder="(例) やまだ"></li>
-                    <li><input class="firstName" type="text" name="firstNameKana" placeholder="たろう"></li>
+                    <li><input class="family-name" type="text" name="familyNameKana" placeholder="(例) やまだ" value="<?=$familyNameKana?>"></li>
+                    <li><input class="given-name" type="text" name="givenNameKana" placeholder="たろう" value="<?=$givenNameKana?>"></li>
                   </ul>
                 </div>
                 <div class="clear"></div>
@@ -58,7 +134,7 @@
                   <p>郵便番号</p>
                 </div>
                 <div class="input-right">
-                  <input type="text" name="zipcode" placeholder="(例) 100-2000">
+                  <input class="zipcode" type="text" name="zipcode" maxlength="8" placeholder="(例) 103-0027" value="<?=$zipcode?>" onKeyUp="AjaxZip3.zip2addr(this,'','prefecture','address');">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -68,7 +144,8 @@
                   <p>住所</p>
                 </div>
                 <div class="input-right">
-                  <input type="text" name="adress" placeholder="(例) 東京都中央区日本橋1-1-1">
+                  <input type="text" name="prefecture" class="address" placeholder="※都道府県名は郵便番号を入力した後に自動入力されます。" value="<?=$prefecture?>">
+                  <input type="text" name="address" class="address" placeholder="※市区町村名の後に続けて記載してください。" value="<?=$address?>">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -78,7 +155,7 @@
                   <p>電話番号</p>
                 </div>
                 <div class="input-right">
-                  <input type="text" name="phone" placeholder="(例) 090-1234-5678">
+                  <input type="tel" name="phone" maxlength="13" placeholder="(例) 090-1234-5678" value="<?=$phone?>">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -88,7 +165,7 @@
                   <p>メールアドレス</p>
                 </div>
                 <div class="input-right">
-                  <input type="email" name="email" placeholder="(例) yoyaku@gmail.com">
+                  <input type="email" name="email" placeholder="(例) yoyaku@example.com" value="<?=$email?>">
                 </div>
                 <div class="clear"></div>
               </div>
@@ -99,7 +176,7 @@
                 </div>
                 <div class="input-right">
                   <label>
-                    <input class="representative-checkbox" type="checkbox" name="representativeStay" id="representativeCheckbox" checked>
+                    <input class="representative-checkbox" type="checkbox" name="representativeStay" id="representativeCheckbox" checked value="<?=$representativeStay?>">
                     <span class="representative-message">上記の予約者と同じ</span>
                   </label>
                   <p class="notice">（代表者が異なる場合はチェックを外し、情報を入力してください。）</p>
@@ -113,8 +190,8 @@
                     </div>
                     <div class="input-right">
                       <ul>
-                        <li><input class="lastName" type="text" name="representativeLastName" placeholder="(例) 山田"></li>
-                        <li><input class="firstName" type="text" name="representativeFirstName" placeholder="太郎"></li>
+                        <li><input class="family-name" type="text" name="representativeFamilyName" placeholder="(例) 山田" value="<?=$representativeFamilyName?>"></li>
+                        <li><input class="given-name" type="text" name="representativeGivenName" placeholder="太郎" value="<?=$representativeGivenName?>"></li>
                       </ul>
                     </div>
                     <div class="clear"></div>
@@ -126,8 +203,8 @@
                     </div>
                     <div class="input-right">
                       <ul>
-                        <li><input class="lastName" type="text" name="representativeLastNameKana" placeholder="(例) やまだ"></li>
-                        <li><input class="firstName" type="text" name="representativeFirstNameKana" placeholder="たろう"></li>
+                        <li><input class="family-name" type="text" name="representativeFamilyNameKana" placeholder="(例) やまだ" value="<?=$representativeFamilyNameKana?>"></li>
+                        <li><input class="given-name" type="text" name="representativeGivenNameKana" placeholder="たろう" value="<?=$representativeGivenNameKana?>"></li>
                       </ul>
                     </div>
                     <div class="clear"></div>
@@ -138,7 +215,7 @@
                       <p>郵便番号</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="representativeZipcode" placeholder="(例) 100-2000">
+                      <input class="zipcode" type="text" name="representativeZipcode" maxlength="8" placeholder="(例) 103-0027" value="<?=$representativeZipcode?>" onKeyUp="AjaxZip3.zip2addr(this,'','representativePrefecture','representativeAddress');">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -148,7 +225,8 @@
                       <p>住所</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="representativeAdress" placeholder="(例) 東京都中央区日本橋1-1-1">
+                      <input type="text" name="representativePrefecture" class="address" placeholder="※郵便番号の入力後、自動入力されます。" value="<?=$representativePrefecture?>">
+                      <input type="text" name="representativeAddress" class="address" placeholder="※市区町村名の後に続けて記載してください。" value="<?=$representativeAddress?>">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -158,10 +236,11 @@
                       <p>電話番号</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="representativePhone" placeholder="(例) 090-1234-5678">
+                      <input type="tel" name="representativePhone" maxlength="13" placeholder="(例) 090-1234-5678" value="<?=$representativePhone?>">
                     </div>
                     <div class="clear"></div>
                   </div>
+                  <!-- <input type="hidden" name="representativeEmail" value="none"> -->
                 </div><!-- representativeForm -->
               </div>
               <div class="input-area">
@@ -170,44 +249,38 @@
                   <p>チェックイン予定時刻</p>
                 </div>
                 <div class="input-right">
-                  <select class="checkin-time" name="checkIn">
-                    <?php
-                      $checkInTime = array('15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00');
-                      $i = 0;
-
-                      foreach ($checkInTime as $time) {
-                        echo "<option value='{$time}'>{$time}</option>";
-                        $i++;
-                      }
-                    ?>
+                  <select class="checkin-time" name="checkInTime" value="<?=$checkInTime?>">
+                    <?php foreach ($checkInTimes as $time): ?>
+                      <option value='<?=$time?>'><?=$time?></option>
+                    <?php endforeach; ?>
                   </select>
                 </div>
                 <div class="clear"></div>
               </div>
               <div class="input-area">
-                <div class="input-left">
+                <div class="input-left transportation-form">
                   <span>必須</span>
                   <p>交通手段</p>
                 </div>
                 <div class="input-right">
                   <label>
-                    <input type="radio" name="transportation" value="車" id="car" class="transportation" checked>
+                    <input type="radio" name="transportation" value="1" class="transportation" checked>
                     <span class="transportation-message">車</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="オートバイ" id="motorcycle" class="transportation">
+                    <input type="radio" name="transportation" value="2" class="transportation">
                     <span class="transportation-message">オートバイ</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="電車" id="train" class="transportation">
+                    <input type="radio" name="transportation" value="3" class="transportation">
                     <span class="transportation-message">電車</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="バス" id="bus" class="transportation">
+                    <input type="radio" name="transportation" value="4" class="transportation">
                     <span class="transportation-message">バス</span>
                   </label>
                   <label>
-                    <input type="radio" name="transportation" value="その他" id="other" class="transportation">
+                    <input type="radio" name="transportation" value="5" class="transportation">
                     <span class="transportation-message">その他</span>
                   </label>
                 </div>
@@ -220,21 +293,17 @@
                 </div>
                 <div class="input-right">
                   <div class="input-mr">
-                    <p>男性：<select class="num-mr" name="guestNumMr">
-                      <?php
-                        for ($i = 0; $i <= 10; $i++) {
-                          echo "<option value='{$i}'>{$i}</option>";
-                        }
-                      ?>
+                    <p>男性：<select class="num-mr" name="guestNumMr" value="<?=$guestNumMr?>">
+                      <?php for ($i = MIN; $i <= MAX; $i++): ?>
+                        <option value='<?=$guestNumMr?>'><?=$i?></option>
+                      <?php endfor; ?>
                     </select> 名</p>
                   </div>
                   <div class="input-mrs">
-                    <p>女性：<select class="num-mrs" name="guestNumMrs">
-                      <?php
-                        for ($i = 0; $i <= 10; $i++) {
-                          echo "<option value='{$i}'>{$i}</option>";
-                        }
-                      ?>
+                    <p>女性：<select class="num-mrs" name="guestNumMrs" value="<?=$guestNumMrs?>">
+                      <?php for ($i = MIN; $i <= MAX; $i++): ?>
+                        <option value='<?=$i?>'><?=$i?></option>
+                      <?php endfor; ?>
                     </select> 名</p>
                   </div>
                 </div>
@@ -246,10 +315,10 @@
                   <p>ご要望など</p>
                 </div>
                 <div class="input-right">
-                  <textarea name="contact" rows="6" cols="30" placeholder="※食材の苦手やアレルギーをお持ちの方、記念日・特別な予約の方、駅からの送迎希望、その他施設への質問がある方はこちらにご記入をお願いします。"></textarea>
+                  <textarea name="contact" rows="12" cols="30" placeholder="※食材の苦手やアレルギーをお持ちの方、記念日・特別な予約の方、駅からの送迎希望、その他施設への質問がある方はこちらにご記入をお願いします。" value="<?=$contact?>"></textarea>
                   <div class="count-text">
                     <span class="count-text-color" id="countUp">0</span>
-                    <span class="count-text-color">/ 300文字</span>
+                    <span class="count-text-color">/ 200文字</span>
                   </div>
                   <p class="notice">※内容によっては、ご希望に添えない場合もございます。</p>
                 </div>
@@ -274,7 +343,7 @@
                       <p>カード番号</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="paymentNum">
+                      <input type="text" name="paymentNum" maxlength="16">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -284,7 +353,7 @@
                       <p>セキュリティーコード</p>
                     </div>
                     <div class="input-right">
-                      <input type="text" name="paymentSecur" id="securityCode">
+                      <input type="text" name="paymentSecur" maxlength="4" id="securityCode">
                     </div>
                     <div class="clear"></div>
                   </div>
@@ -295,20 +364,14 @@
                     </div>
                     <div class="input-right">
                       <select class="expiration-date" name="paymentMonth">
-                        <option value="--">月</option>
-                          <?php
-                            for ($i = 1; $i <= 12; $i++) {
-                              echo "<option value='{$i}'>{$i}</option>";
-                            }
-                          ?>
+                        <?php for ($i = START_MONTH; $i <= END_MONTH; $i++): ?>
+                          <option value='<?=$i?>'><?=$i?></option>
+                        <?php endfor; ?>
                       </select>
                       <select class="expiration-date" name="paymentYear">
-                        <option value="--">年</option>
-                          <?php
-                            for ($i = 2018; $i <= 2038; $i++) {
-                              echo "<option value='{$i}'>{$i}</option>";
-                            }
-                          ?>
+                        <?php for ($i = $start_year; $i <= $end_year; $i++): ?>
+                          <option value='<?=$i?>'><?=$i?></option>
+                        <?php endfor; ?>
                       </select>
                     </div>
                     <div class="clear"></div>
@@ -381,7 +444,7 @@
         <h3>総額1泊 ¥ 108,000</h3>
         <p>12月12日 ¥ 108,000</p>
         <h3>備考</h3>
-        <p>一部の地域では、入湯税や宿泊税などの税金が発生する場合がございます。詳細は宿泊施設へ直接ご確認の上、ご予約くださいませ。</p>
+        <p class="extra-fee">一部の地域では、入湯税や宿泊税などの税金が発生する場合がございます。詳細は宿泊施設へ直接ご確認の上、ご予約くださいませ。</p>
       </div>
       <div class="total-price">
         <p>合計金額</p>
@@ -394,6 +457,7 @@
 
     </div>
   </footer>
-  <script type="text/javascript" src="js/reserve.js"></script>
+  <script src="js/reserve.js"></script>
+  <script src="js/validation.js"></script>
 </body>
 </html>

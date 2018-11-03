@@ -68,8 +68,6 @@ use Cake\Utility\Security;
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
-
-    // 自作の定数ファイルを読み込み
     Configure::load('myconfig', 'default');
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
@@ -97,7 +95,7 @@ if (Configure::read('debug')) {
  * Set the default server timezone. Using UTC makes time calculations / conversions easier.
  * Check http://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
-date_default_timezone_set(Configure::read('Asia/Tokyo'));
+date_default_timezone_set(Configure::read('App.defaultTimezone'));
 
 /*
  * Configure the mbstring extension to use the correct encoding.

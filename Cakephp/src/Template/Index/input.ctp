@@ -5,7 +5,9 @@
             <p>ご予約情報を入力後、ページ下の「予約内容の最終確認へ進む」ボタンを押してください。</p>
         </div>
         <div class="reservation-form-wrapper">
-            <form action="confirm.php" method="post">
+
+            <?= $this->Form->create(null, ['url' => ['controller' => 'index', 'action' => 'confirm']]) ?>
+
                 <div class="input-area">
                     <div class="input-left-box">
                         <span>必須</span>
@@ -50,9 +52,9 @@
                     </div>
                     <div class="input-right-box">
                         <select class="prefecture" name="prefecture">
-                            <?= foreach ($pref as $k => $v): ?>
+                            <?php foreach($prefecture as $k => $v): ?>
                                 <option value="<?=$k?>"><?=$v?></option>
-                            <?= endforeach; ?>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="clear"></div>
@@ -213,9 +215,9 @@
                     </div>
                     <div class="input-right-box">
                         <select class="checkInTime" name="checkInTime" value="">
-                            <?= foreach ($cit as $k => $v): ?>
+                            <?php foreach ($checkin as $k => $v): ?>
                                 <option value="<?=$k?>"><?=$v?></option>
-                            <?= endforeach; ?>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="clear"></div>

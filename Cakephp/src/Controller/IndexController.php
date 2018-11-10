@@ -3,19 +3,23 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
-use Cake\Core\Configure\Engine\PhpConfig;
 
 class IndexController extends AppController
 {
     public function input()
     {
-        Configure::load("myconfig.php");
-        $pref = Configure::read("prefecture");
-        $cit = Configure::read("checkin");
+        $prefecture = Configure::read('prefecture');
+        $checkin    = Configure::read('checkin');
+
+        $this->set('prefecture', $prefecture);
+        $this->set('checkin', $checkin);
     }
 
     public function confirm()
     {
+        $data = $this->request->getData();
+
+        $this->set('data', $data);
     }
 
     public function register()

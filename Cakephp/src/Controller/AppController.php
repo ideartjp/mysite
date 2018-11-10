@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 /**
  * Application Controller
@@ -46,7 +47,9 @@ class AppController extends Controller
         ]);
         $this->loadComponent('Flash');
 
-	$this->viewBuilder()->setLayout('ideart');
+    	$this->viewBuilder()->setLayout('ideart');
+
+        Configure::load('app/ideart', 'default', false);
 
         /*
          * Enable the following component for recommended CakePHP security settings.

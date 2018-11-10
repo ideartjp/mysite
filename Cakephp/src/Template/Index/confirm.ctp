@@ -8,7 +8,7 @@
                 <table>
                     <tr class="form-item">
                         <th>氏名</th>
-                        <td><?= $familyName . " " . $givenName; ?></td>
+                        <td><?= $data['familyName'] . " " . $data['givenName']; ?></td>
                     </tr>
                     <tr class="form-item">
                         <th>かな</th>

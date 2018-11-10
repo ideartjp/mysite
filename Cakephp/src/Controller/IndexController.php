@@ -9,7 +9,9 @@ class IndexController extends AppController
 {
     public function input()
     {
-	$this->set('color', 'pink');
+        Configure::load("myconfig.php");
+        $pref = Configure::read("prefecture");
+        $cit = Configure::read("checkin");
     }
 
     public function confirm()

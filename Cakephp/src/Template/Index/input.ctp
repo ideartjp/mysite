@@ -159,7 +159,9 @@
                             </div>
                             <div class="input-right-box">
                                 <select class="prefecture" name="repPrefecture">
-                                    <option value=""></option>
+                                    <?php foreach($prefecture as $k => $v): ?>
+                                        <option value="<?=$k?>"><?=$v?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="clear"></div>
@@ -228,15 +230,11 @@
                         <p>人数内訳（大人）</p>
                     </div>
                     <div class="input-right-box">
-                        <div class="input-mr">
-                            <p>男性：<select class="guestNumMr" name="guestNumMr" value="">
-                                <option value=''></option>
-                            </select> 名</p>
+                        <div class="guestNum-box">
+                            男性：<input class="guestNum" type="text" name="guestNumMr" value=""> 名
                         </div>
-                        <div class="input-mrs">
-                            <p>女性：<select class="guestNumMrs" name="guestNumMrs" value="">
-                                <option value=''></option>
-                            </select> 名</p>
+                        <div class="guestNum-box">
+                            女性：<input class="guestNum" type="text" name="guestNumMrs" value=""> 名
                         </div>
                     </div>
                     <div class="clear"></div>

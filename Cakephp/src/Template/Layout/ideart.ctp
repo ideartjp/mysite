@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <?php
     echo $this->fetch('meta');
+    echo $this->Html->css('reset.css');
     echo $this->Html->css('mystyle.css');
     echo $this->fetch('css');
     echo $this->HTML->script('myscript.js');
